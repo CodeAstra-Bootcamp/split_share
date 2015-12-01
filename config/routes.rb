@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#land'
+  authenticated :user do
+    root to: 'home#land', as: :authenticated_root
+  end
+  root to: redirect('/users/sign_in')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
