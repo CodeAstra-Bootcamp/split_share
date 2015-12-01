@@ -1,0 +1,7 @@
+<h1>Create a new Group</h1>
+
+<%= simple_form_for @group, html: {class: "well"} do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.submit "Create New Group", class: "btn btn-primary btn-lg" %>
+<% end %>

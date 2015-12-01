@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  resources :groups
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   authenticated :user do
-    root to: 'home#land', as: :authenticated_root
+    root to: 'groups#index', as: :authenticated_root
   end
   root to: redirect('/users/sign_in')
 

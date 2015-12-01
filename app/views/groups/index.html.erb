@@ -1,0 +1,11 @@
+<h1>My Groups</h1>
+<div class="container-fluid">
+  <div class="row">
+    <%= render @groups %>
+    <div class="col-sm-4">
+      <div class="well text-center">
+        <%= link_to fa_icon("plus-circle", text: "Create a new Group"), new_group_path %>
+      </div>
+    </div>
+  </div>
+</div>
