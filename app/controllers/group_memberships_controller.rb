@@ -16,8 +16,7 @@ class GroupMembershipsController < ApplicationController
         invited_user = User.invite!(:email => email)
         invited_user.invited_group = @group
         invited_user.save!
-        # Remember the user to join the group after adding to group
-        flash[:alert] = "No such user"
+        flash[:notice] = "Invitation sent successfully"
       else
         flash[:alert] = "Please enter proper email address"
       end
