@@ -3,8 +3,13 @@ class GroupMembershipsController < ApplicationController
     @group = Group.find(params[:group_membership][:group_id])
     usr = User.find_by(email: params[:group_membership][:email])
     if usr
-      @group.add(usr)
-      flash[:notice] = "Member added successfully"
+      begin
+        @group.add(usr)
+      rescue
+        flash[:alert] = "Member is already part of the group"
+      else
+        flash[:notice] = "Member added successfully"
+      end
     else
       # Invite the user
       # Remember the user to join the group after adding to group
