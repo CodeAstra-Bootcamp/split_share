@@ -1,6 +1,11 @@
 <%= button_tag "Add People", class: "btn btn-primary pull-right", data: {toggle: "modal", target: "#addPeopleModal"} %>
 <h1><%= @group.name %></h1>
 <p><%= @group.description %></p>
+<ul>
+  <% @members.each do |member| %>
+    <li><%= member.email %></li>
+  <% end %>
+</ul>
 
 <div id="addPeopleModal" class="modal fade">
   <div class="modal-dialog" role="document">
@@ -12,6 +17,7 @@
       <div class="modal-body">
         <%= simple_form_for @group_membership do |f| %>
           <%= f.input :email %>
+          <%= f.input :group_id, as: :hidden %>
           <%= f.submit "Add Member", class: "btn btn-primary" %>
         <% end %>
       </div>

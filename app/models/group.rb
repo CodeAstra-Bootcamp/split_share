@@ -13,7 +13,14 @@
 class Group < ActiveRecord::Base
   belongs_to :admin, class_name: User.name
   has_many :memberships, class_name: GroupMembership.name
+  has_many :users, through: :memberships
 
   validates :name,        presence: true
   validates :description, presence: true
+
+  def add(usr)
+    gm = self.memberships.new
+    gm.user = usr
+    gm.save!
+  end
 end
