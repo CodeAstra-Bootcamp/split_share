@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
 
   after_invitation_accepted :join_invited_group
 
+  def can_invite_to?(grp)
+    grp.admin == self
+  end
+
 private
   def join_invited_group
     self.invited_group.add(self)
