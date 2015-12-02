@@ -18,9 +18,16 @@ class Group < ActiveRecord::Base
   validates :name,        presence: true
   validates :description, presence: true
 
+  after_create :add_admin_to_group
+
   def add(usr)
     gm = self.memberships.new
     gm.user = usr
     gm.save!
+  end
+
+private
+  def add_admin_to_group
+    self.add(self.admin)
   end
 end

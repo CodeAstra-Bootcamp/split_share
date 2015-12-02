@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.admin = current_user
     if @group.save
-      redirect_to groups_path
+      redirect_to @group
     else
       render :new
     end
