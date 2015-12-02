@@ -13,7 +13,7 @@ class GroupMembershipsController < ApplicationController
       end
     else
       if email.match(Devise.email_regexp)
-        # Invite the user
+        User.invite!(:email => email)
         # Remember the user to join the group after adding to group
         flash[:alert] = "No such user"
       else
