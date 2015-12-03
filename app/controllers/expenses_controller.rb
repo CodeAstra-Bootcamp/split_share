@@ -3,6 +3,7 @@ class ExpensesController < ApplicationController
     group = Group.find(params[:group_id])
     expense = group.expenses.new(expense_params)
     expense.creator = current_user
+    expense.share_holders = params[:expense][:share_holders].reject(&:blank?).collect(&:to_i)
     if expense.save
       flash[:notice] = "Expense Tracked Successfully"
     else

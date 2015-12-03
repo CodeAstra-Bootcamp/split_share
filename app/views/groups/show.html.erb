@@ -68,6 +68,7 @@
           <%= f.input :title %>
           <%= f.input :amount %>
           <%= f.input :bill_date, html5: true, input_html: {value: Date.today} %>
+          <%= f.input :share_holders, collection: @members, as: :check_boxes, label_method: :email, value_method: :id %>
           <%= f.submit "Track Expense", class: "btn btn-primary" %>
         <% end %>
       </div>

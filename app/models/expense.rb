@@ -18,6 +18,8 @@ class Expense < ActiveRecord::Base
 
   has_many :shares, class_name: ExpenseShare.name, dependent: :destroy
 
+  attr_accessor :share_holders
+
   validates :title, presence: true
   validates :bill_date, presence: true
   validates :amount, presence: true,
@@ -27,11 +29,11 @@ class Expense < ActiveRecord::Base
 
 private
   def share_expense
-    members_count = self.group.memberships.count
-    self.group.memberships.each do |membership|
+    memberships = self.group.memberships.where(user_id: self.share_holders)
+    memberships.each do |membership|
       es = self.shares.new
       es.group_membership = membership
-      es.amount = self.amount / members_count
+      es.amount = self.amount / memberships.count
       es.save!
     end
   end
