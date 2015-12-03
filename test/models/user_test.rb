@@ -27,6 +27,7 @@
 #  invited_by_id          :integer
 #  invited_by_type        :string
 #  invitations_count      :integer          default(0)
+#  invited_group_id       :integer
 #
 
 require 'test_helper'
