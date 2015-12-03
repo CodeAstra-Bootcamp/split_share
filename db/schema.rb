@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203110540) do
+ActiveRecord::Schema.define(version: 20151203114443) do
+
+  create_table "expense_shares", force: :cascade do |t|
+    t.integer  "expense_id"
+    t.integer  "group_membership_id"
+    t.integer  "amount"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "expense_shares", ["expense_id"], name: "index_expense_shares_on_expense_id"
+  add_index "expense_shares", ["group_membership_id"], name: "index_expense_shares_on_group_membership_id"
 
   create_table "expenses", force: :cascade do |t|
     t.string   "title"

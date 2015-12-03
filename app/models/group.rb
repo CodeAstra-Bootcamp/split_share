@@ -12,9 +12,9 @@
 
 class Group < ActiveRecord::Base
   belongs_to :admin, class_name: User.name
-  has_many :memberships, class_name: GroupMembership.name
+  has_many :memberships, class_name: GroupMembership.name, dependent: :destroy
   has_many :members, through: :memberships, source: :user
-  has_many :expenses
+  has_many :expenses, dependent: :destroy
 
   validates :name,        presence: true
   validates :description, presence: true
