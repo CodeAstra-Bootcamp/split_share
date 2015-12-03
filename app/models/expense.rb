@@ -18,18 +18,12 @@ class Expense < ActiveRecord::Base
 
   has_many :shares, class_name: ExpenseShare.name, dependent: :destroy
 
-  scope :for_display, -> {order(id: :desc)}
-
   validates :title, presence: true
   validates :bill_date, presence: true
   validates :amount, presence: true,
             numericality: {greater_than: 0, only_integer: true}
 
   after_create :share_expense
-
-  def share_of(membership)
-    self.shares.where(group_membership_id: membership.id).first.amount
-  end
 
 private
   def share_expense

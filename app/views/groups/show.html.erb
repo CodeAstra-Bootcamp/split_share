@@ -23,13 +23,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @expenses.each do |expense| %>
+    <% @shares.each do |share| %>
+      <% expense = @expenses[share.expense_id].first %>
       <tr>
         <td><%= expense.title %></td>
         <td><%= expense.bill_date.strftime("%b %e, %Y") %></td>
-        <td><%= expense.creator.email %></td>
+        <td><%= @creators[expense.creator_id].first.email %></td>
         <td>Rs. <%= expense.amount %></td>
-        <td>Rs. <%= expense.share_of(@membership) %></td>
+        <td>Rs. <%= share.amount %></td>
       </tr>
     <% end %>
   </tbody>

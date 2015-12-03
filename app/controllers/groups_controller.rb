@@ -21,7 +21,10 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @membership = @group.memberships.where(user_id: current_user.id).first
     @members = @group.members
-    @expenses = @group.expenses.for_display.all
+    @shares = @membership.expense_shares.for_display.all
+    @expenses = Expense.where(id: @shares.collect(&:expense_id)).group_by(&:id)
+    @creators = User.where(id: @expenses.values.flatten.collect(&:creator_id)).group_by(&:id)
+
     @expense = @group.expenses.new
     @group_membership = @group.memberships.new
   end

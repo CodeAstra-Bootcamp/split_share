@@ -13,6 +13,8 @@ class GroupMembership < ActiveRecord::Base
   belongs_to :user
   belongs_to :group
 
+  has_many :expense_shares
+
   attr_accessor :email
 
   validates :user_id, presence: true
