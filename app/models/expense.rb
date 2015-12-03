@@ -8,10 +8,12 @@
 #  group_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  creator_id :integer
 #
 
 class Expense < ActiveRecord::Base
   belongs_to :group
+  belongs_to :creator, class_name: User.name
 
   validates :title, presence: true
   validates :amount, presence: true,

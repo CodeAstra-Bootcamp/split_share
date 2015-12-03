@@ -2,6 +2,7 @@ class ExpensesController < ApplicationController
   def create
     group = Group.find(params[:group_id])
     expense = group.expenses.new(expense_params)
+    expense.creator = current_user
     if expense.save
       flash[:notice] = "Expense Tracked Successfully"
     else
