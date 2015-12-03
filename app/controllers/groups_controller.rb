@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @membership = @group.memberships.where(user_id: current_user.id).first
     @members = @group.members
     @expenses = @group.expenses.for_display.all
     @expense = @group.expenses.new

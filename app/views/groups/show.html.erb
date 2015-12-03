@@ -19,6 +19,7 @@
       <th>Bill Date</th>
       <th>Added By</th>
       <th>Amount</th>
+      <th>My Share</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,7 @@
         <td><%= expense.bill_date.strftime("%b %e, %Y") %></td>
         <td><%= expense.creator.email %></td>
         <td>Rs. <%= expense.amount %></td>
+        <td>Rs. <%= expense.share_of(@membership) %></td>
       </tr>
     <% end %>
   </tbody>

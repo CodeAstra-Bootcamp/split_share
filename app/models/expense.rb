@@ -27,6 +27,10 @@ class Expense < ActiveRecord::Base
 
   after_create :share_expense
 
+  def share_of(membership)
+    self.shares.where(group_membership_id: membership.id).first.amount
+  end
+
 private
   def share_expense
     members_count = self.group.memberships.count
