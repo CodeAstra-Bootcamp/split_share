@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  creator_id :integer
+#  bill_date  :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
